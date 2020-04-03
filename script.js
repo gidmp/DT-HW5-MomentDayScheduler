@@ -4,6 +4,7 @@ var time = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
 
 //shows current hour, look at console for reference, compare this to the timeblocks
 var currentHour = moment().hours()
+//store input
 var scheduleStorage = [];
 
 $(document).ready(function() {
@@ -15,13 +16,14 @@ $(document).ready(function() {
         var createDiv = $("<div>");
         var createForm = $("<input>");
         var createSaveBtn = $("<button>");
+        var blockTime = 9 + i;
 
         createDiv.addClass("time-block row ");
         createDiv.text(time[i]);
 
         createForm.addClass("description col-10 past");
         //set attribute for the time to compare it with currentHour variable
-        createForm.attr("time", 9+i);
+        createForm.attr("time", blockTime);
         //created data index so that we can save the content of the schedule locally
         createForm.attr("data-index", i)
 
@@ -31,22 +33,26 @@ $(document).ready(function() {
         //created data index so that we can save the content of the schedule locally
         createSaveBtn.attr("data-index", i)
 
-        //change the color of the form based on current time
-        if(currentHour === parseInt($("input").attr("time"))){
-            currentHour.removeClass("past")
-            currentHour.addClass("present")
-        }
-
+        //append the timeblocks
         createDiv.append(createForm, createSaveBtn)
         $(".container").append(createDiv);
+
+        //change the color of the form based on current time
+        if(currentHour === blockTime){
+            createForm.removeClass("past")
+            createForm.addClass("present")
+        }
+        console.log(parseInt($("input").attr("time")));
+    
         
 
-    } 
+    }     
     
 
-
+    //save the content inside the input form into local storage and render it when clicked
     $(".saveBtn").on("click", function(){
-        //save the content inside the input form into local storage and render it
+        var input = $(".description").val();
+
     })
 });
 

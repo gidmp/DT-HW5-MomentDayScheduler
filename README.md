@@ -1,12 +1,18 @@
 # DT-HW5-MomentDayScheduler
 5th homework for UWMC coding bootcamp
 
-1. use 3 different div for the timeblocks's time, text area(use form/input?) and save button then align them then repeat them for each 1 hour passed
+Moment day scheduler link: https://gidmp.github.io/DT-HW5-MomentDayScheduler/
 
-2. assign a same value to the divs in the same line, maybe using prop()???
+The goal of this home is to make a schedule maker where you can input and save a task in a timeblock that will,visually, let you know the timeframe. This app is made with its core mechanic centered around Moment.JS. The HTML and CSS were provided by the class so I focused on the javascript.
 
-3.0. set current time as a variable so that we can compare it to the time in timeblock
+    1. The current date and time were dynamically implemented using moment JS. The current hour is stored in a variable for comparison with each hour the timeblock represents
 
-3. somehow connect the time div to moment JS so the present colored red, past-grey, future-green by compating the current time with past and future time. probably use .isBefore, .isSame, .isAfter from momnetJS documentation???
+    2. The timeblock and the save button were dynamically created by looping through an array containing each time block representation.
 
-4.when the save button is clicked, save the form/input with the same attr/prop as the button to the local storage and render it, same when you erased the text.
+    3. while the time block were created, we attach 2 attributes as identifier. the first is hour-n which we will compare with current time, which then we'll use as reference to color each timeblock based on whether the task is in the future, present or past.
+
+    4. the second attribute is data-index which contain an integer. This attributte is shared with the save button adjacent to the timeblock. The purpose of this is to let the save button kknow which timeblock to save in local storage when clicked.
+
+    5. append each timeblock to the container.
+
+    <a href = "DT-HW5gif.gif" alt = "moment day scheduler gif></a>

@@ -50,8 +50,6 @@ $(document).ready(function() {
             createForm.addClass("past");
         }
  
-        console.log(parseInt($("input").attr("time")));
-
     }     
     
 

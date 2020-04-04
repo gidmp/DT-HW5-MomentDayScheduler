@@ -1,6 +1,6 @@
 
 var date = moment().format('MMMM Do YYYY');
-var time = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
+var time = ["9AM&nbsp&nbsp", "10AM", "11AM", "12PM", "1PM&nbsp&nbsp", "2PM&nbsp&nbsp", "3PM&nbsp&nbsp", "4PM&nbsp&nbsp", "5PM&nbsp&nbsp"];
 
 //shows current hour, look at console for reference, compare this to the timeblocks
 var currentHour = moment().hours()
@@ -15,11 +15,13 @@ $(document).ready(function() {
         var createDiv = $("<div>");
         var createForm = $("<input>");
         var createSaveBtn = $("<button>");
+        var createP = $("<p>");
         var blockTime = 9 + i;
 
         createDiv.addClass("time-block row ");
-        createDiv.attr("id", "hour-" + i)
-        createDiv.text(time[i]);
+        createDiv.attr("id", "hour-" + i);
+        createP.html(time[i]);
+        createP.css("margin-top", "33px");
 
         createForm.addClass("description col-10 past");
         //set attribute for the time to compare it with currentHour variable
@@ -34,7 +36,7 @@ $(document).ready(function() {
         createSaveBtn.attr("data-index", i)
 
         //append the timeblocks
-        createDiv.append(createForm, createSaveBtn)
+        createDiv.append(createP, createForm, createSaveBtn)
         $(".container").append(createDiv);
 
         //change the color of the form based on current time
@@ -55,43 +57,21 @@ $(document).ready(function() {
 
     //Storage------------------------------------------------------------------
 
-    var scheduleStorage = [];
-    var form = $("input");
-    var saveBtn = $("button")
-
-    // init();
-
-
-    // function init(){
-    //     var storedInput = JSON.parse(localStorage.getItem("storage"));
-    //     if (storedInput !== null){
-    //         scheduleStorage = storedInput;
-    //     } 
-    // }
-    
-
     function storeInput(time, value){
         localStorage.setItem(time, value);
-    }
-    
+    }   
 
     //save the content inside the input form into local storage and render it when clicked
     function submitSchedule(e){ 
         e.preventDefault();
         var input = $(this).siblings(".description").val();
         var time = $(this).parent().attr("id");
-        // if(input === ""){
-        //     return;
-        // }
-        // if (form.attr("data-index") === $(this).attr("data-index")){
-        //     scheduleStorage.push(time, input);
-        // }
         storeInput(time, input);
-        //if event.target have teh same data index as the input form, save the input form
     }
 
     $(document).on("click", ".saveBtn", submitSchedule);
 
+    //get item from the storage and print them in the timeblock
     $("#hour-0 .description").val(localStorage.getItem("hour-0"));
     $("#hour-1 .description").val(localStorage.getItem("hour-1"));
     $("#hour-2 .description").val(localStorage.getItem("hour-2"));
@@ -103,8 +83,6 @@ $(document).ready(function() {
     $("#hour-8 .description").val(localStorage.getItem("hour-8"));
 });
 
-console.log(moment());
-console.log(currentHour);
 
 
 

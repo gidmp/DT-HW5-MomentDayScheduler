@@ -15,4 +15,3 @@ The goal of this home is to make a schedule maker where you can input and save a
 
     5. append each timeblock to the container.
 
-    <a href = "DT-HW5gif.gif" alt = "moment day scheduler gif></a>
